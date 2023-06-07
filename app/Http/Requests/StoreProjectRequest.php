@@ -30,7 +30,8 @@ class StoreProjectRequest extends FormRequest
             'languages' => 'required|max:255',
             'tags' => 'nullable|max:255',
             'description' => 'required',
-            'repo_url' => 'nullable|url'
+            'repo_url' => 'nullable|url',
+            'category_id' => 'required|exists:categories,id'
         ];
     }
 
@@ -43,7 +44,10 @@ class StoreProjectRequest extends FormRequest
             'image_url.url' => "L'url dell'immagine non è corretto",
             'tags.max' => 'Il campo tag non può essere più lungo di :max caratteri',
             'description.required' => 'Una descrizione del progetto è obbligatoria',
-            'repo_url.url' => "L'url della repository non è corretto"
+            'repo_url.url' => "L'url della repository non è corretto",
+            'category_id.required' => 'Si è verificato un erorre relativo alle categorie, riprova',
+            'category_id.exists' => 'Si è verificato un erorre relativo alle categorie, riprova'
+
 
 
         ];

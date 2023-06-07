@@ -34,7 +34,21 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-6">
+            <div class="col-4">
+                <label for="category_id" class="form-label">Categoria</label>
+               <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
+                @foreach ($categories as $category)
+                    <option
+                    {{$category->id == old('category_id', $project->category->id) ? 'selected' : ''}}
+                    value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+
+            </select>
+                @error('category_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-4">
                 <label for="languages" class="form-label">Linguaggi</label>
                 <input type="text" required maxlength="255" name="languages"
                     class="form-control @error('languages') is-invalid @enderror" value="{{ old('languages', $project->languages) }}"
@@ -43,7 +57,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <label for="tags" class="form-label">Tags</label>
                 <input type="text" maxlength="255" name="tags"
                     class="form-control @error('tags') is-invalid @enderror" value="{{ old('tags', $project->tags) }}"
