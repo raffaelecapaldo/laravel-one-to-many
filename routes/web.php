@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
         Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
-        Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
+        Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug'])->except(['edit', 'create']);
 
 
     });

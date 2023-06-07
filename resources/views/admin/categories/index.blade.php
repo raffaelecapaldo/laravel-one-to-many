@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <h3 class="text-center mb-2">Lista categorie</h3>
             <div class="buttons d-flex justify-content-center">
-                <button class="btn btn-primary add-button">Aggiungi categoria</button>
+                <button class="btn btn-primary add-button mb-2">Aggiungi categoria</button>
             </div>
             @error('name')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -35,9 +35,8 @@
                                 </td>
 
                                 <td>
-                                    <button class="btn btn-warning "><a class="text-black"
-                                            href="{{ route('admin.projects.edit', $category->slug) }}"><i
-                                                class="fa-solid fa-pen-to-square"></i></a></button>
+                                    <button data-item-name="{{$category->name}}" data-item-slug="{{$category->slug}}" class="btn btn-warning edit-button"><i
+                                                class="fa-solid fa-pen-to-square"></i></button>
                                     <form class="d-inline" method="POST"
                                         action="{{ route('admin.categories.destroy', $category->slug) }}">
                                         @csrf
@@ -61,4 +60,6 @@
     </div>
 
     @include('admin.partials.addcategorymodal')
+    @include('admin.partials.editcategorymodal')
+    @include('admin.partials.deletemodal')
 @endsection
