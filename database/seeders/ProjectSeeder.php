@@ -38,6 +38,7 @@ class ProjectSeeder extends Seeder
                 'name' => 'Campominato',
                 'image_url' => 'https://wallpapers.com/images/hd/red-forest-trees-n8z3bf3dv0b2cj6w.jpg',
                 'languages' => 'Javascript, HTML, CSS',
+                'category_id' => '2',
                 'tags' => 'Games',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sagittis vel ante quis fermentum. In iaculis mauris lorem, aliquam viverra ex ornare a. Proin pretium dolor metus, quis consequat velit facilisis vitae. Etiam maximus id sem sit amet fermentum. Fusce eros nisl, consectetur a sem non, egestas ultrices purus. Quisque faucibus, metus non egestas interdum, odio diam hendrerit turpis, tristique interdum nunc velit eget erat.',
                 'repo_url' => 'https://github.com/raffaelecapaldo/js-campominato-dom'
@@ -53,6 +54,12 @@ class ProjectSeeder extends Seeder
             $newProject->tags = $project['tags'];
             $newProject->description = $project['description'];
             $newProject->repo_url = $project['repo_url'];
+            if (array_key_exists('category_id', $project)) {
+                $newProject->category_id = intval($project['category_id']);
+            }
+            else {
+                $newProject->category_id = 1;
+            }
             $newProject->save();
         }
     }
