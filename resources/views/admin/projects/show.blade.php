@@ -3,8 +3,11 @@
 Anteprima {{$project->name}}
 @endsection
 @section('content')
-    <div class="container mx-auto mt-2">
-        <div class="project myform">
+    <div class="container mx-auto">
+        <div class="project myform p-4">
+            <div class="category-badge">
+                <h2>{{$project->category->name}}</h2>
+            </div>
             <h1>{{$project->name}}</h1>
             <div class="image-container">
                 <img class="img-fluid project-image rounded-2" src="{{$project->image_url}}" alt="{{$project->name}}">

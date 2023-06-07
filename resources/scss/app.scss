@@ -97,4 +97,18 @@ $fa-font-path: "../fonts/webfonts" !default;
     &:hover {
         color: #acb6c4 !important;
     }
+
+
+}
+
+.category-badge {
+    background-color: $secondarycolor;
+    display: inline-block;
+    padding: 3px 15px;
+    border-radius: 6px;
+    h2 {
+        font-size: 25px;
+        margin:4px;
+        color:white;
+    }
 }
