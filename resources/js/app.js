@@ -20,14 +20,24 @@ deleteButton.forEach((button) => {//a tutti i tasti aggiungi eventlistener con f
         event.preventDefault();//previeni evento form
 
         const dataTitle = button.getAttribute('data-item-name');//prendi dal bottone specifico l'attributo data-item-title
+        const dataType = button.getAttribute('data-item-type');
 
         const modal = document.getElementById('deleteModal');//seleziona modale
 
         const bootstrapModal = new bootstrap.Modal(modal);//istanzia modale (guida boostrap)
         bootstrapModal.show();//mostrala
 
-        const modalItemTitle = modal.querySelector('#modal-item-title');//seleziona titolo modale
+        const modalItemTitle = modal.querySelector('#modal-item-title');
+        const modalItemTitleType = modal.querySelector('#modal-item-titletype')//seleziona titolo modale
         modalItemTitle.textContent = dataTitle;//assegnagli contenuto di data-item-title
+
+        if (dataType == "project") {
+            modalItemTitleType.textContent = 'il progetto';
+        }
+        else {
+        modalItemTitleType.textContent = 'la categoria';
+
+        }
 
         const buttonDelete = modal.querySelector('button.btn-primary');//seleziona bottone conferma modale
 
@@ -36,3 +46,10 @@ deleteButton.forEach((button) => {//a tutti i tasti aggiungi eventlistener con f
         });
     });
 });
+
+const addButton = document.querySelector('.add-button')
+addButton.addEventListener('click', function() {
+    const addModal = document.getElementById('AddModal');
+    const bootstrapAddModal = new bootstrap.Modal(addModal);
+    bootstrapAddModal.show();
+})

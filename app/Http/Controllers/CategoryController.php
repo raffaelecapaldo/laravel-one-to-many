@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Project;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::latest()->paginate(8);
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -36,7 +39,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $data = $request->validated();
+        $newCat = new Category();
+        $newCat->fill($data);
+        $newCat->slug = Str::slug($newCat->name, '-');
+        $newCat->save();
+        return redirect()->route('admin.categories.index')->with('message', "La categoria $newCat->name è stata aggiunta correttamente");
+
     }
 
     /**
@@ -47,7 +56,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $projects = Project::where('category_id', $category->id)->paginate(8);
+        return view('admin.categories.show', compact('category', 'projects'));
     }
 
     /**
@@ -70,7 +80,10 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $data = $request->validated();
+        $category->update($data);
+        return redirect()->route('admin.categories.index')->with('message', "La categoria $category->name è stata aggiornata");
+
     }
 
     /**
@@ -81,6 +94,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with('message', "La categoria $category->name è stata cancellata, coi suoi relativi progetti");
+
+
     }
 }

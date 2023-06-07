@@ -8,6 +8,7 @@
             <li><a href="{{route('admin.dashboard')}}">Home</a></li>
             <li><a href="{{route('admin.projects.create')}}">Aggiungi progetto</a></li>
             <li><a href="{{route('admin.projects.index')}}">Lista progetti</a></li>
+            <li><a href="{{route('admin.categories.index')}}">Lista categorie</a></li>
             <li><form class="d-inline" method="POST" action="{{route('logout')}}">
                 @csrf
                 <button class="a-form" type="submit">Logout</button>

@@ -13,7 +13,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:50'
+        ];
+    }
+
+    public function messages() {
+        return [
+            'name.required' => 'Il nome della categoria è richiesto',
+            'name.max' => 'Il nome della categoria non può essere più lungo di :max caratteri'
         ];
     }
 }

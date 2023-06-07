@@ -3,7 +3,7 @@
 @section('content')
 <div class="project-list">
 <div class="container-fluid">
-    <h3>Lista progetti</h3>
+    <h3>Lista progetti della categoria {{$category->name}}</h3>
     @if (session('message'))
             <div class="alert alert-success text-center">
                 {{ session('message') }}
@@ -36,12 +36,13 @@
                        <form class="d-inline" method="POST" action="{{route('admin.projects.destroy', $project->slug)}}">
                         @csrf
                         @method('DELETE')
-                        <button data-item-type="project" data-item-name="{{$project->name}}" type="submit" class="btn btn-danger delete-button"><i class="fa-regular fa-trash-can"></i></button>
+                        <button data-item-type="category" data-item-name="{{$project->name}}" type="submit" class="btn btn-danger delete-button"><i class="fa-regular fa-trash-can"></i></button>
                     </form>
                     </td>
                   </tr>
                 @empty
-                  <h3 class="text-center">Nessuna progetto presente</h3>
+                  <h3 class="text-center">Nessun progetto in questa categoria</h3>
+
                 @endforelse
 
             </tbody>
