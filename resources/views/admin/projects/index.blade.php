@@ -17,6 +17,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Immagine</th>
                 <th scope="col">URL Repository</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Azioni</th>
               </tr>
             </thead>
@@ -27,6 +28,8 @@
                     <td>{{$project->name}}</td>
                     <td><img class="preview img-thumbnail" src="{{$project->image_url}}" alt="{{$project->name}}"></td>
                     <td><a href="{{$project->repo_url}}">{{"$project->name Github"}}</a></td>
+                    <td>{{$project->category->name}}</td>
+
                     <td>
                         <button class="btn btn-success"><a class="text-white" href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-eye"></i></a></button>
                         <button class="btn btn-warning "><a class="text-black" href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
